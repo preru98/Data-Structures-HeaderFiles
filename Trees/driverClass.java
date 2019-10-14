@@ -5,8 +5,7 @@ public class driverClass{
         Scanner sc =new Scanner(System.in);
         val=sc.nextInt();
         tree T=new tree(val);
-
-
+        
     }
 }
 class tree{
@@ -14,7 +13,7 @@ class tree{
     tree(int rootData){
         rootNode=new Node(rootData,null,null); 
     }
-    addNode(int data,Node n){
+    void addNode(int data,Node n){
         if(n.data>data){
             if(n.leftNode!=null){
                 addNode(data,n.leftNode);
@@ -31,6 +30,15 @@ class tree{
             }
         }
     }
+    void display(Node n){
+        if(n.leftNode!=null){
+            display(n.leftNode);
+        }
+        else{
+            System.out.println(n.data);
+            display(n.rightNode);
+        }  
+    }
 }
 class Node{
     int data;
@@ -45,6 +53,3 @@ class Node{
    
 }
 
-class addNode{
-
-}
