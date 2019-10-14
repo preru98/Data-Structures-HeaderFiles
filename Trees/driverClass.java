@@ -5,7 +5,6 @@ public class driverClass{
         Scanner sc =new Scanner(System.in);
         val=sc.nextInt();
         tree T=new tree(val);
-        
     }
 }
 class tree{
