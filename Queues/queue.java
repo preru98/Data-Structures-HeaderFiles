@@ -1,19 +1,18 @@
 public class queue{
     int array[];
     int rear;
-    // int front;
+    int front;
     queue(){
         array=new int[50];
         rear=-1;
-        // front=-1;
+        front=-1;
     }
     public void add(int ele){
-        // if(rear==-1){
-        //     rear=front=0;
-        //     array[rear]=ele;
-        // }
-        // else 
-        if(rear==49){
+        if(rear==-1){
+            rear=front=0;
+            array[rear]=ele;
+        }
+        else if(rear==49){
             System.out.println("Overflow");
         }
         else{
@@ -21,8 +20,16 @@ public class queue{
             array[rear]=ele;
         }
     }
+    public void remove(){
+        if(front==-1|| front==50){
+            System.out.println("Overflow");
+        }
+        else{
+            front++;
+        }
+    }
     public void display(){
-        for(int i=0;i<=rear;i++){
+        for(int i=front;i<=rear;i++){
             System.out.println(array[i]);
         }
     }
@@ -34,6 +41,7 @@ class driverClass{
         Q.add(20);
         Q.add(30);
         Q.display();
-
+        Q.remove();
+        Q.display();
     }
 }
