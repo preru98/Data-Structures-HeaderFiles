@@ -26,19 +26,25 @@ public class circularqueue{
         }
 
     }
-    // public void remove(){
-    //     if(front==-1|| front==50){
-    //         System.out.println("Overflow");
-    //     }
-    //     else{
-    //         front++;
-    //     }
-    // }
-    public void display(){
-        for(int i=front;i<=rear;i++){
-            System.out.println(array[i]);
+    public void remove(){
+        if(front==-1){
+            System.out.println("Overflow");
+        }
+        else if(front==rear){
+            front=rear=-1;
+        }
+        else if(front==4){
+            front=0;
+        }
+        else{
+            front++;
         }
     }
+    // public void display(){
+    //     for(int i=front;i<=rear;i++){
+    //         System.out.println(array[i]);
+    //     }
+    // }
 } 
 class driverClass{
     public static void main(String args[]){
@@ -61,13 +67,13 @@ class driverClass{
                 Q.add(val);
             }
     
-            // else if(ch==2){
-            //     Q.remove();
-            // }
-
-            else if(ch==3){
-                Q.display();
+            else if(ch==2){
+                Q.remove();
             }
+
+            // else if(ch==3){
+            //     Q.display();
+            // }
 
             else 
                 System.out.println("Wrong Choice.Aborting...");
