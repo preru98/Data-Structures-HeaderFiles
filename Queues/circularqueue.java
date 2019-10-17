@@ -9,26 +9,28 @@ public class circularqueue{
         front=-1;
     }
     public void add(int ele){
-        if(rear==-1){
-            rear=front=0;
-            array[rear]=ele;
-        }
-        else if((rear==4 && front ==0)||(front==rear+1)){
+        if((rear==4 && front ==0)||(front==rear+1)){
             System.out.println("Overflow");
         }
-        if(rear==4){
-            rear=0;
-            array[rear]=ele;
-        }
-        else{
-            rear++;
-            array[rear]=ele;
-        }
 
+        else{
+            if(rear==-1){
+                rear=front=0;
+                array[rear]=ele;
+            }
+            else if(rear==4){
+                rear=0;
+                array[rear]=ele;
+            }
+            else{
+                rear++;
+                array[rear]=ele;
+            }
+        }
     }
     public void remove(){
         if(front==-1){
-            System.out.println("Overflow");
+            System.out.println("underflow");
         }
         else if(front==rear){
             front=rear=-1;
@@ -40,11 +42,26 @@ public class circularqueue{
             front++;
         }
     }
-    // public void display(){
-    //     for(int i=front;i<=rear;i++){
-    //         System.out.println(array[i]);
-    //     }
-    // }
+    public void display(){
+        if(front==-1){
+            System.out.println("Empty");
+        }
+        else{
+            if(front<=rear){
+                for(int i=front;i<=rear;i++){
+                System.out.println(array[i]);
+                }   
+            }
+            else{
+                for(int i=front;i<5;i++){
+                    System.out.println(array[i]);
+                }  
+                for(int i=0;i<=rear;i++){
+                    System.out.println(array[i]);
+                }
+            }
+        }
+    }
 } 
 class driverClass{
     public static void main(String args[]){
@@ -71,9 +88,9 @@ class driverClass{
                 Q.remove();
             }
 
-            // else if(ch==3){
-            //     Q.display();
-            // }
+            else if(ch==3){
+                Q.display();
+            }
 
             else 
                 System.out.println("Wrong Choice.Aborting...");
@@ -81,6 +98,6 @@ class driverClass{
         System.out.println("Do you want to continue? Press 1.");
          rep=sc.nextInt();
         } 
-     
     }
 }
+
