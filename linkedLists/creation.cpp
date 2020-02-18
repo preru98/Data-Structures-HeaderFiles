@@ -12,12 +12,13 @@ Node *start=NULL, *rear=NULL;
 Node * create(int);
 void display(Node *);
 void insert_at_end(int[],int);
+void insert_at_beg(int[],int);
 
 
 int main(){
     int array[]={1,2,3,4,5};
     int size=sizeof(array)/sizeof(array[0]);
-    insert_at_end(array,size);
+    insert_at_beg(array,size);
     display(start);
 }
 
@@ -46,5 +47,19 @@ void display(Node * first){
     while(first!=NULL){
         cout<<first->data<<" | ";
         first=first->next;
+    }
+}
+
+
+void insert_at_beg(int array[],int size){
+    
+    //linking with start & rear
+    start=create(array[0]);
+    
+    for(int i=1;i<size;i++){
+        Node *temp;
+        temp=create(array[i]);
+        temp->next=start;
+        start=temp;
     }
 }
