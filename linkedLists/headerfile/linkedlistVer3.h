@@ -34,7 +34,7 @@ void reverse();
 void remove_duplicates();
 void concat(Node*, Node*, Node*);    //concat(rear, start2, rear2)
 void swap(int,int);
-
+void bring_to_start();
 
 void insert_at_end_array2(int array[],int size){
     
