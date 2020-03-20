@@ -32,6 +32,16 @@ int main(){
 }
 
 void showQueue(queue <string> Q){
+
+    /*
+
+    ***
+    Very Important 
+    The Data Structurepassed here, totally preserve the contents as well as relationship between 
+    elements but changes made here in this DS, will not be reflected back to calling function.
+    ***
+
+    */
     while(!Q.empty()){
         cout<<Q.front()<<"  ";
         Q.pop();  
