@@ -26,7 +26,7 @@ int main(){
 }
 
 
-void maxHeapify(int array[],int index,int size){
+void maxHeapify(int array[],int index,int size){  //Insertion : Heapify
 
     int lchild=LchildIndex(index);
     int rchild=RchildIndex(index);
