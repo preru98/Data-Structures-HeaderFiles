@@ -11,30 +11,19 @@ ________________________________________________________________________________
 #include<iostream>
 
 using namespace std;
-int finding_nemo(int, int[]);
 
 int main(){
 
-    int test_cases, N,temp;
+    int test_cases, N, temp, sum_of_N;
     cin>>test_cases;
     for(int i=0;i<test_cases;i++){
         cin>>N;
-        int* store=new int[N+1];
+        sum_of_N=(N*(N+1))/2;
         for(int i=0;i<N-1;i++){
             cin>>temp;
-            store[temp]++;
+            sum_of_N=sum_of_N-temp;
         }
-        cout<<finding_nemo(N, store)<<endl;
+        cout<<sum_of_N<<endl;
     }
     return 0;
 }
-
-int finding_nemo(int N,int store[]){
-    for(int i=1;i<N+1;i++){
-        if(!store[i]){
-            return i;
-        }
-    }
-    return -1;
-}
-
