@@ -1,17 +1,19 @@
 /*__________________________________________________________________________________________________________________________________________________________________________________________________
-Given an array arr of N integers. Find the contiguous sub-array with maximum sum.
+Given a sorted array of positive integers. Your task is to rearrange  the array elements alternatively i.e first element should be max value, second should be min value, third should be second max, fourth should be second min and so on...
+
+Note: O(1) extra space is allowed. Also, try to modify the input array as required.
 
 Input:
-The first line of input contains an integer T denoting the number of test cases. The description of T test cases follows. The first line of each test case contains a single integer N denoting the size of array. The second line contains N space-separated integers A1, A2, ..., AN denoting the elements of the array.
+First line of input conatins number of test cases T. First line of test case contain an integer denoting the array size N and second line of test case contain N space separated integers denoting the array elements.
 
 Output:
-Print the maximum sum of the contiguous sub-array in a separate line for each test case.
+Output the modified array with alternated elements.
 _________________________________________________________________________________________________________________________________________________________________________________________________*/
 
 #include<iostream>
 
 using namespace std;
-int kadane(int, int[]);
+void alter_array(int, int[]);
 
 int main(){
 
@@ -23,17 +25,19 @@ int main(){
         for(int i=0;i<size;i++){
             cin>>array[i];
         }
-        cout<<kadane(size, array)<<endl;
+        alter_array(size, array);
+        cout<<endl;
     }
     return 0;
 }
 
-int kadane(int size,int array[]){
-
-    int max_sum_current_index=array[0], global_max_sum=array[0];
-    for(int i=1;i<size;i++){
-        max_sum_current_index=max(max_sum_current_index+array[i], array[i]);
-        global_max_sum = max_sum_current_index > global_max_sum ? max_sum_current_index : global_max_sum;
+void alter_array(int size,int array[]){
+    int count=0,k=0;
+    int* altered_array=new int[size];
+    for(int i=0,j=size-1;i<=j;k++,count++){  
+        altered_array[k]=(count%2==0) ? array[j--] : array[i++];
     }
-    return global_max_sum;
+    for(int i=0;i<size;i++){
+        cout<<altered_array[i]<<" ";
+    }
 }
