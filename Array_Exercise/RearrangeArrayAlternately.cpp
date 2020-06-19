@@ -13,16 +13,16 @@ ________________________________________________________________________________
 #include<iostream>
 
 using namespace std;
-void alter_array(int, int[]);
+void alter_array(long long, long long[]);
 
 int main(){
 
-    int test_cases, size;
+    long long test_cases, size;
     cin>>test_cases;
-    for(int i=0;i<test_cases;i++){
+    for(long long i=0;i<test_cases;i++){
         cin>>size;
-        int* array=new int[size];
-        for(int i=0;i<size;i++){
+        long long* array=new long long[size];
+        for(long long i=0;i<size;i++){
             cin>>array[i];
         }
         alter_array(size, array);
@@ -31,13 +31,35 @@ int main(){
     return 0;
 }
 
-void alter_array(int size,int array[]){
-    int count=0,k=0;
-    int* altered_array=new int[size];
-    for(int i=0,j=size-1;i<=j;k++,count++){  
-        altered_array[k]=(count%2==0) ? array[j--] : array[i++];
+void alter_array(long long size,long long array[]){
+    long long min_p=0, max_p=size-1, z=array[size-1]+1, i=0;
+
+    while(i<size){ 
+        array[i++]+=  i%2==0 ? (array[max_p--]%z)*z : (array[min_p++]%z)*z;
     }
     for(int i=0;i<size;i++){
-        cout<<altered_array[i]<<" ";
+        cout<<array[i]/z<<" ";
     }
+    
 }
+/* 
+    I like to write smol code but this practice decreases the readability.
+    So here is the expanded version of the above while loop, which is easy to understand and readable.
+    
+    while(i<size){    
+        if(i%2==0){
+            array[i]+=(array[max_p--]%z)*z;
+            // max_p--;
+        }
+        else{
+            array[i]+=(array[min_p++]%z)*z;
+            // min_p++;
+        }
+        i++;
+    }
+    for(int i=0;i<size;i++){
+        cout<<array[i]/z<<" ";
+    }
+
+
+*/
