@@ -14,9 +14,9 @@ ________________________________________________________________________________
 #include<iostream>
 
 using namespace std;
-int inversion_count (int, int, int[]);
+long long inversion_count (int, int, int[]);
 void display(int [],int);
-int merge(int, int, int, int[]);
+long long merge(int, int, int, int[]);
 
 int main(){
 
@@ -28,7 +28,7 @@ int main(){
 
         int* array=new int[size];
 
-        cout<<"Enter elements";
+        // cout<<"Enter elements";
 
         for(int i=0;i<size;i++){
             cin>>array[i];
@@ -36,6 +36,7 @@ int main(){
         // display(array,size);
 
         cout<<inversion_count(0,size-1, array);
+        // cout<<"*"<<answer<<"*";
 
         // display(array,size);
 
@@ -44,62 +45,53 @@ int main(){
     return 0;
 }
 
-int inversion_count(int lb, int ub, int array[]){
-    static int ret=0;
+long long inversion_count(int lb, int ub, int array[]){
     if(lb<ub){
         int mid=(lb+ub)/2;
-        int left_inversions=inversion_count(lb, mid, array);
-        int right_inversions=inversion_count(mid+1, ub, array);
+        long long left_inversions=inversion_count(lb, mid, array);
+        long long right_inversions=inversion_count(mid+1, ub, array);
 
-        int combined_inversion=merge(lb, mid, ub, array);
+        long long combined_inversion=merge(lb, mid, ub, array);
 
-	    return left_inversions+right_inversions+combined_inversion;
+	    return left_inversions+ right_inversions+ combined_inversion;
     }
     return 0;
 }
 
-int merge(int lb, int mid, int ub, int array[]){
-    int counter=0;
+long long merge(int lb, int mid, int ub, int array[]){
+    long long counter=0;
     int size=ub-lb+1;
     int *newArray=new int [size];
-    int i=lb, j=mid+1, k=0, array_one_counter=lb, array_two_counter=mid+1;
-    counter++;
-
+    int i=lb, j=mid+1, k=0;
     //Counting inversions
-    while(i<=mid && array_two_counter<=ub){
+    while(i<=mid && j<=ub){
         
-        if(array[array_one_counter]<=array[array_two_counter]){
+        if(array[i]<=array[j]){
             newArray[k]=array[i];
             i++;
-            array_one_counter++;
         }
         else{
             newArray[k]=array[j];
             j++;
-            counter+=mid-array_one_counter+1;
-            array_two_counter++;
+            counter+=mid-i+1;
+            // cout<<counter<<" : ";
         }
         k++;
     }
 
-    if(i>mid){
-        while(j<=ub){
-            newArray[k]=array[j];
-            j++;
-            k++;
-        }
+    while(j<=ub){
+        newArray[k]=array[j];
+        j++;
+        k++;
     }
-    if(j>ub){
-        while(i<=mid){
-            newArray[k]=array[i];
-            i++;
-            k++;
-        }
+    while(i<=mid){
+        newArray[k]=array[i];
+        i++;
+        k++;
     }
     for(int i=lb, j=0;i<=ub;i++,j++){            //Transferring contents after merging to original array
         array[i]=newArray[j];
     }
-
     return counter;
 }
 
