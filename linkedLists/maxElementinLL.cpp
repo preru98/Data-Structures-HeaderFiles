@@ -24,7 +24,7 @@ int main(){
     }
     display(start);
 
-    cout<<"\nMax: "<<max(start);
+    max(start)==-1?cout<<"Underflow | Empty Linked List | No Max Element":cout<<"\nMax: "<<max(start);
     return 0;
 }
 
@@ -54,15 +54,19 @@ void display(Node* start){
 }
 
 int max(Node* start){
-    int max=start->data;
-    start=start->next;
-    while(start){
-        if(start->data>max){
-            max=start->data;
-        }
+    if(start){
+        int max=start->data;
         start=start->next;
+        while(start){
+            if(start->data>max){
+                max=start->data;
+            }
+            start=start->next;
+        }
+        return max;
     }
-    return max;
+    // cout<<"Underflow | Empty Linked List | No Max Element";
+    return -1;
 }
 
 
