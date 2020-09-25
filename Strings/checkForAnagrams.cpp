@@ -20,11 +20,10 @@ bool check_anagrams_distinct(string first, string second){
 
     for(int i=0;i<first.size();i++){
         table[int(first[i])-97]++;
-        table[int(second[i])-97]++;
     }
-    
+
     for(int i=0;i<first.size();i++){
-        if(table[int(first[i])-97]!=2){
+        if(!(table[int(second[i])-97])){
             return false;
         }
     }
